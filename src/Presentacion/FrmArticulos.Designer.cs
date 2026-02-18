@@ -56,7 +56,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblTotalArticulos = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblUltimaActualización = new System.Windows.Forms.Label();
             this.btnActaulizarDatos = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
@@ -378,7 +378,7 @@
             // groupBox5
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox5.Controls.Add(this.label5);
+            this.groupBox5.Controls.Add(this.lblUltimaActualización);
             this.groupBox5.Controls.Add(this.btnActaulizarDatos);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Location = new System.Drawing.Point(12, 301);
@@ -388,15 +388,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Configuración";
             // 
-            // label5
+            // lblUltimaActualización
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(35, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "15/02/2026 - 18:42";
+            this.lblUltimaActualización.AutoSize = true;
+            this.lblUltimaActualización.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUltimaActualización.Location = new System.Drawing.Point(35, 65);
+            this.lblUltimaActualización.Name = "lblUltimaActualización";
+            this.lblUltimaActualización.Size = new System.Drawing.Size(119, 13);
+            this.lblUltimaActualización.TabIndex = 12;
+            this.lblUltimaActualización.Text = "15/02/2026 - 18:42";
             // 
             // btnActaulizarDatos
             // 
@@ -407,6 +407,7 @@
             this.btnActaulizarDatos.TabIndex = 10;
             this.btnActaulizarDatos.Text = "Actualizar Datos";
             this.btnActaulizarDatos.UseVisualStyleBackColor = true;
+            this.btnActaulizarDatos.Click += new System.EventHandler(this.btnActaulizarDatos_Click);
             // 
             // label1
             // 
@@ -478,6 +479,6 @@
         private System.Windows.Forms.Label lblTotalArticulos;
         private System.Windows.Forms.Button btnActaulizarDatos;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblUltimaActualización;
     }
 }

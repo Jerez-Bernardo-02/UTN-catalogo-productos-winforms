@@ -33,23 +33,31 @@ namespace Presentacion
         {
             try
             {
-                // Articulos
-                CargarListaArticulos();
-                CargarListaImagenes();
-                AsociarImagenesPorArticulo();
-
-                // Filtros
-                CargarListaCategorias();
-                CargarListaMarcas();
-                CargarFiltros();
-
-                // IU
-                MostrarGrilla();
+                CargarFormulario();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void CargarFormulario()
+        {
+            // Articulos
+            CargarListaArticulos();
+            CargarListaImagenes();
+            AsociarImagenesPorArticulo();
+
+            // Filtros
+            CargarListaCategorias();
+            CargarListaMarcas();
+            CargarFiltros();
+
+            // IU
+            CargarLabelTotalArticulos();
+            CargarLabelUltimaActualizacion();
+            LimpiarFiltros();
+            MostrarGrilla();
         }
 
         // ---------- Carga de Datos ----------
@@ -105,6 +113,16 @@ namespace Presentacion
             cbxMarcas.ValueMember = "Id";
         }
 
+        private void CargarLabelTotalArticulos()
+        {
+            lblTotalArticulos.Text = "Total de artículos: " + listaArticulos.Count.ToString();
+        }
+
+        private void CargarLabelUltimaActualizacion()
+        {
+            lblUltimaActualización.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
         // ---------- Eventos Principales ----------
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
@@ -146,12 +164,12 @@ namespace Presentacion
 
         private void btnLimpiarFiltros_Click(object sender, EventArgs e)
         {
-            cbxCategorias.SelectedIndex = 0;
-            cbxMarcas.SelectedIndex = 0;
-            txtPrecioMinimo.Clear();
-            txtPrecioMaximo.Clear();
+            LimpiarFiltros();
+        }
 
-            MostrarGrilla();
+        private void btnActaulizarDatos_Click(object sender, EventArgs e)
+        {
+            CargarFormulario();
         }
 
         // ---------- Eventos de UI ----------
@@ -226,6 +244,16 @@ namespace Presentacion
             dgvArticulos.Columns["Id"].Visible = false;
             dgvArticulos.Columns["Descripcion"].Visible = false;
             dgvArticulos.Columns["Precio"].Visible = false;
+        }
+
+        private void LimpiarFiltros()
+        {
+            cbxCategorias.SelectedIndex = 0;
+            cbxMarcas.SelectedIndex = 0;
+            txtPrecioMinimo.Clear();
+            txtPrecioMaximo.Clear();
+
+            MostrarGrilla();
         }
 
         // ---------- Filtros ----------
