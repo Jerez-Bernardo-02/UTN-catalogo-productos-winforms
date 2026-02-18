@@ -37,7 +37,7 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error al cargar el formulario: " + ex.ToString());
             }
         }
 
@@ -128,7 +128,7 @@ namespace Presentacion
         {
             CargarArticuloSeleccionado();
 
-            if(articuloActual == null)
+            if (articuloActual == null)
             {
                 return;
             }
@@ -172,6 +172,59 @@ namespace Presentacion
             CargarFormulario();
         }
 
+        // ---------- Eventos ABM ----------
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            FrmAltaArticulo formulario = new FrmAltaArticulo();
+
+            formulario.ShowDialog();
+
+            CargarFormulario(); // Se recarga el formulario sin importar de si se realizó un cambio o no
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            // TODO: Crear constructor del formulario que reciba por parametro el articulo a modificar
+
+            // FrmAltaArticulo formulario = new FrmAltaArticulo(seleccionado);
+            // formulario.ShowDialog();
+
+            CargarFormulario(); // Se recarga el formulario sin importar de si se realizó un cambio o no
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Seguro que deseas eliminar el artículo?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                EliminarArticuloSeleccionado();
+            }
+
+            CargarFormulario(); // Se recarga el formulario sin importar de si se realizó un cambio o no
+        }
+
+        private void EliminarArticuloSeleccionado()
+        {
+            try
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                int id = seleccionado.Id;
+                string nombre = seleccionado.Nombre;
+
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                negocio.Eliminar(id);
+
+                MessageBox.Show("El artículo '" + nombre + "' fue eliminado correctamente.", "Eliminar artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el artículo: " + ex.Message);
+            }
+        }
+
         // ---------- Eventos de UI ----------
         private void CargarArticuloSeleccionado()
         {
@@ -187,7 +240,7 @@ namespace Presentacion
 
         private void MostrarGrilla(List<Articulo> lista = null)
         {
-            if(lista == null)
+            if (lista == null)
             {
                 lista = listaArticulos;
             }
@@ -200,7 +253,7 @@ namespace Presentacion
 
         private void MostrarDetalle()
         {
-            if(articuloActual == null)
+            if (articuloActual == null)
             {
                 return;
             }
@@ -235,7 +288,7 @@ namespace Presentacion
 
             btnAnterior.Enabled = indiceImagenActual > 0;
             btnSiguiente.Enabled = indiceImagenActual < articuloActual.Imagenes.Count - 1;
-            
+
             dgvArticulos.Focus(); // Evita que al cambiar de imagen se seleccione el control "txtDescripcion"
         }
 
@@ -262,7 +315,7 @@ namespace Presentacion
             List<Articulo> listaFiltrada;
             string filtro = txtFiltroRapido.Text;
 
-            if(filtro.Length >= 3) // Solo filtra a partir de 3 caracteres
+            if (filtro.Length >= 3) // Solo filtra a partir de 3 caracteres
             {
                 listaFiltrada = listaArticulos.FindAll(x => x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Nombre.ToUpper().Contains(filtro.ToUpper()));
             }
@@ -284,7 +337,7 @@ namespace Presentacion
                 listaFiltrada = listaFiltrada.FindAll(x => x.Categoria.Id == idCategoria);
             }
 
-            if(cbxMarcas.SelectedIndex > 0)
+            if (cbxMarcas.SelectedIndex > 0)
             {
                 int idMarca = (int)cbxMarcas.SelectedValue;
                 listaFiltrada = listaFiltrada.FindAll(x => x.Marca.Id == idMarca);
