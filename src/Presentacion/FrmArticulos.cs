@@ -17,6 +17,8 @@ namespace Presentacion
         // ---------- Campos privados ----------
         private List<Articulo> listaArticulos;
         private List<Imagen> listaImagenes;
+        private List<Categoria> listaCategorias;
+        private List<Marca> listaMarcas;
 
         private Articulo articuloActual;
         private int indiceImagenActual;
@@ -31,10 +33,17 @@ namespace Presentacion
         {
             try
             {
+                // Articulos
                 CargarListaArticulos();
                 CargarListaImagenes();
                 AsociarImagenesPorArticulo();
 
+                // Filtros
+                CargarListaCategorias();
+                CargarListaMarcas();
+                CargarFiltros();
+
+                // IU
                 MostrarGrilla();
             }
             catch (Exception ex)
@@ -67,6 +76,33 @@ namespace Presentacion
             {
                 articulo.Imagenes = listaImagenes.FindAll(img => img.IdArticulo == articulo.Id);
             }
+        }
+
+        private void CargarListaCategorias()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            listaCategorias = negocio.Listar();
+
+            listaCategorias.Insert(0, new Categoria { Id = 0, Descripcion = "Todas" });
+        }
+
+        private void CargarListaMarcas()
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            listaMarcas = negocio.Listar();
+
+            listaMarcas.Insert(0, new Marca { Id = 0, Descripcion = "Todas" });
+        }
+
+        private void CargarFiltros()
+        {
+            cbxCategorias.DataSource = listaCategorias;
+            cbxCategorias.DisplayMember = "Descripcion";
+            cbxCategorias.ValueMember = "Id";
+
+            cbxMarcas.DataSource = listaMarcas;
+            cbxMarcas.DisplayMember = "Descripcion";
+            cbxMarcas.ValueMember = "Id";
         }
 
         // ---------- Eventos Principales ----------
@@ -108,6 +144,16 @@ namespace Presentacion
             ActualizarBotonesImagen();
         }
 
+        private void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            cbxCategorias.SelectedIndex = 0;
+            cbxMarcas.SelectedIndex = 0;
+            txtPrecioMinimo.Clear();
+            txtPrecioMaximo.Clear();
+
+            MostrarGrilla();
+        }
+
         // ---------- Eventos de UI ----------
         private void CargarArticuloSeleccionado()
         {
@@ -121,10 +167,15 @@ namespace Presentacion
             indiceImagenActual = 0;
         }
 
-        private void MostrarGrilla()
+        private void MostrarGrilla(List<Articulo> lista = null)
         {
+            if(lista == null)
+            {
+                lista = listaArticulos;
+            }
+
             dgvArticulos.DataSource = null;
-            dgvArticulos.DataSource = listaArticulos;
+            dgvArticulos.DataSource = lista;
 
             OcultarColumnas();
         }
@@ -192,10 +243,58 @@ namespace Presentacion
                 listaFiltrada = listaArticulos;
             }
 
-            dgvArticulos.DataSource = null;
-            dgvArticulos.DataSource = listaFiltrada;
+            MostrarGrilla(listaFiltrada);
+        }
 
-            OcultarColumnas();
+        private void filtroAvanzado()
+        {
+            List<Articulo> listaFiltrada = listaArticulos;
+
+            if (cbxCategorias.SelectedIndex > 0)
+            {
+                int idCategoria = (int)cbxCategorias.SelectedValue;
+                listaFiltrada = listaFiltrada.FindAll(x => x.Categoria.Id == idCategoria);
+            }
+
+            if(cbxMarcas.SelectedIndex > 0)
+            {
+                int idMarca = (int)cbxMarcas.SelectedValue;
+                listaFiltrada = listaFiltrada.FindAll(x => x.Marca.Id == idMarca);
+            }
+
+            if (!string.IsNullOrEmpty(txtPrecioMinimo.Text))
+            {
+                decimal precioMinimo = decimal.Parse(txtPrecioMinimo.Text);
+                listaFiltrada = listaFiltrada.FindAll(x => x.Precio >= precioMinimo);
+            }
+
+            if (!string.IsNullOrEmpty(txtPrecioMaximo.Text))
+            {
+                decimal precioMaximo = decimal.Parse(txtPrecioMaximo.Text);
+                listaFiltrada = listaFiltrada.FindAll(x => x.Precio <= precioMaximo);
+            }
+
+            MostrarGrilla(listaFiltrada);
+        }
+
+        private void cbxCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filtroAvanzado();
+        }
+
+        private void cbxMarcas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filtroAvanzado();
+        }
+
+        private void txtPrecioMinimo_TextChanged(object sender, EventArgs e)
+        {
+            filtroAvanzado();
+        }
+
+        private void txtPrecioMaximo_TextChanged(object sender, EventArgs e)
+        {
+            filtroAvanzado();
         }
     }
 }

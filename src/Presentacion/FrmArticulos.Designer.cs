@@ -42,23 +42,23 @@
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxMarcas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cbxCategorias = new System.Windows.Forms.ComboBox();
+            this.txtPrecioMinimo = new System.Windows.Forms.TextBox();
+            this.txtPrecioMaximo = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblTotalArticulos = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnActaulizarDatos = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -76,6 +76,7 @@
             this.btnLimpiarFiltros.TabIndex = 9;
             this.btnLimpiarFiltros.Text = "Limpiar filtros";
             this.btnLimpiarFiltros.UseVisualStyleBackColor = true;
+            this.btnLimpiarFiltros.Click += new System.EventHandler(this.btnLimpiarFiltros_Click);
             // 
             // label8
             // 
@@ -220,13 +221,15 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cbxMarcas
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(18, 89);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 21);
-            this.comboBox1.TabIndex = 3;
+            this.cbxMarcas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxMarcas.FormattingEnabled = true;
+            this.cbxMarcas.Location = new System.Drawing.Point(18, 89);
+            this.cbxMarcas.Name = "cbxMarcas";
+            this.cbxMarcas.Size = new System.Drawing.Size(150, 21);
+            this.cbxMarcas.TabIndex = 3;
+            this.cbxMarcas.SelectedIndexChanged += new System.EventHandler(this.cbxMarcas_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -248,29 +251,33 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "Categorías";
             // 
-            // comboBox2
+            // cbxCategorias
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(18, 49);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(150, 21);
-            this.comboBox2.TabIndex = 1;
+            this.cbxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCategorias.FormattingEnabled = true;
+            this.cbxCategorias.Location = new System.Drawing.Point(18, 49);
+            this.cbxCategorias.Name = "cbxCategorias";
+            this.cbxCategorias.Size = new System.Drawing.Size(150, 21);
+            this.cbxCategorias.TabIndex = 1;
+            this.cbxCategorias.SelectedIndexChanged += new System.EventHandler(this.cbxCategorias_SelectedIndexChanged);
             // 
-            // textBox1
+            // txtPrecioMinimo
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(66, 148);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(102, 20);
-            this.textBox1.TabIndex = 6;
+            this.txtPrecioMinimo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrecioMinimo.Location = new System.Drawing.Point(66, 148);
+            this.txtPrecioMinimo.Name = "txtPrecioMinimo";
+            this.txtPrecioMinimo.Size = new System.Drawing.Size(102, 20);
+            this.txtPrecioMinimo.TabIndex = 6;
+            this.txtPrecioMinimo.TextChanged += new System.EventHandler(this.txtPrecioMinimo_TextChanged);
             // 
-            // textBox2
+            // txtPrecioMaximo
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(67, 174);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(101, 20);
-            this.textBox2.TabIndex = 8;
+            this.txtPrecioMaximo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrecioMaximo.Location = new System.Drawing.Point(67, 174);
+            this.txtPrecioMaximo.Name = "txtPrecioMaximo";
+            this.txtPrecioMaximo.Size = new System.Drawing.Size(101, 20);
+            this.txtPrecioMaximo.TabIndex = 8;
+            this.txtPrecioMaximo.TextChanged += new System.EventHandler(this.txtPrecioMaximo_TextChanged);
             // 
             // label13
             // 
@@ -293,20 +300,20 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cbxCategorias);
             this.groupBox1.Controls.Add(this.btnLimpiarFiltros);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.cbxMarcas);
+            this.groupBox1.Controls.Add(this.txtPrecioMinimo);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtPrecioMaximo);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(190, 270);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
             // 
@@ -345,7 +352,7 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.lblTotalArticulos);
             this.groupBox4.Controls.Add(this.txtFiltroRapido);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.dgvArticulos);
@@ -353,15 +360,26 @@
             this.groupBox4.Location = new System.Drawing.Point(226, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(447, 463);
-            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Listado de Artículos";
+            // 
+            // lblTotalArticulos
+            // 
+            this.lblTotalArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotalArticulos.AutoSize = true;
+            this.lblTotalArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalArticulos.Location = new System.Drawing.Point(18, 417);
+            this.lblTotalArticulos.Name = "lblTotalArticulos";
+            this.lblTotalArticulos.Size = new System.Drawing.Size(137, 13);
+            this.lblTotalArticulos.TabIndex = 12;
+            this.lblTotalArticulos.Text = "Total de artículos: 123";
             // 
             // groupBox5
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.button1);
+            this.groupBox5.Controls.Add(this.btnActaulizarDatos);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Location = new System.Drawing.Point(12, 301);
             this.groupBox5.Name = "groupBox5";
@@ -369,37 +387,6 @@
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Configuración";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 417);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Total de artículos: 123";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(45, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Última actualización:";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(20, 117);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 35);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Actualizar Datos";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -410,6 +397,26 @@
             this.label5.Size = new System.Drawing.Size(119, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "15/02/2026 - 18:42";
+            // 
+            // btnActaulizarDatos
+            // 
+            this.btnActaulizarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActaulizarDatos.Location = new System.Drawing.Point(20, 117);
+            this.btnActaulizarDatos.Name = "btnActaulizarDatos";
+            this.btnActaulizarDatos.Size = new System.Drawing.Size(150, 35);
+            this.btnActaulizarDatos.TabIndex = 10;
+            this.btnActaulizarDatos.Text = "Actualizar Datos";
+            this.btnActaulizarDatos.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(45, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Última actualización:";
             // 
             // FrmArticulos
             // 
@@ -454,12 +461,12 @@
         private System.Windows.Forms.DataGridView dgvArticulos;
         private System.Windows.Forms.Button btnLimpiarFiltros;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxMarcas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox cbxCategorias;
+        private System.Windows.Forms.TextBox txtPrecioMinimo;
+        private System.Windows.Forms.TextBox txtPrecioMaximo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblPrecio;
@@ -468,8 +475,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblTotalArticulos;
+        private System.Windows.Forms.Button btnActaulizarDatos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
     }
