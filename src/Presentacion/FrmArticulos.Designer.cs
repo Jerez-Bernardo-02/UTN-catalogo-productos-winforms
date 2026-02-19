@@ -91,6 +91,7 @@
             // 
             this.txtFiltroRapido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFiltroRapido.Location = new System.Drawing.Point(21, 49);
+            this.txtFiltroRapido.MaxLength = 50;
             this.txtFiltroRapido.Name = "txtFiltroRapido";
             this.txtFiltroRapido.Size = new System.Drawing.Size(240, 20);
             this.txtFiltroRapido.TabIndex = 1;
@@ -272,6 +273,7 @@
             this.txtPrecioMinimo.Size = new System.Drawing.Size(102, 20);
             this.txtPrecioMinimo.TabIndex = 6;
             this.txtPrecioMinimo.TextChanged += new System.EventHandler(this.txtPrecioMinimo_TextChanged);
+            this.txtPrecioMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMinimo_KeyPress);
             // 
             // txtPrecioMaximo
             // 
@@ -281,6 +283,7 @@
             this.txtPrecioMaximo.Size = new System.Drawing.Size(101, 20);
             this.txtPrecioMaximo.TabIndex = 8;
             this.txtPrecioMaximo.TextChanged += new System.EventHandler(this.txtPrecioMaximo_TextChanged);
+            this.txtPrecioMaximo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMaximo_KeyPress);
             // 
             // label13
             // 

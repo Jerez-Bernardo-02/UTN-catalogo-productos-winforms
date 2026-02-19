@@ -172,6 +172,36 @@ namespace Presentacion
             CargarFormulario();
         }
 
+        private void txtPrecioMinimo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Evitar más de una coma o punto
+            if ((e.KeyChar == ',' || e.KeyChar == '.') && (txtPrecioMinimo.Text.Contains(",") || txtPrecioMinimo.Text.Contains(".")))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPrecioMaximo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Evitar más de una coma o punto
+            if ((e.KeyChar == ',' || e.KeyChar == '.') && (txtPrecioMaximo.Text.Contains(",") || txtPrecioMaximo.Text.Contains(".")))
+            {
+                e.Handled = true;
+            }
+        }
+
         // ---------- Eventos ABM ----------
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -184,7 +214,12 @@ namespace Presentacion
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            if (!HayArticuloSeleccionado())
+            {
+                return;
+            }
+
+            Articulo seleccionado = articuloActual;
 
             // TODO: Crear constructor del formulario que reciba por parametro el articulo a modificar
 
@@ -196,6 +231,11 @@ namespace Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (!HayArticuloSeleccionado())
+            {
+                return;
+            }
+
             DialogResult resultado = MessageBox.Show("¿Seguro que deseas eliminar el artículo?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (resultado == DialogResult.Yes)
@@ -210,9 +250,8 @@ namespace Presentacion
         {
             try
             {
-                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                int id = seleccionado.Id;
-                string nombre = seleccionado.Nombre;
+                int id = articuloActual.Id;
+                string nombre = articuloActual.Nombre;
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 negocio.Eliminar(id);
@@ -307,6 +346,18 @@ namespace Presentacion
             txtPrecioMaximo.Clear();
 
             MostrarGrilla();
+        }
+
+        private bool HayArticuloSeleccionado()
+        {
+            if (dgvArticulos.CurrentRow == null && dgvArticulos.CurrentRow.DataBoundItem == null)
+            {
+                MessageBox.Show("No hay un artículo seleccionado. Por favor seleccione uno.", "Modificar artículo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            return true;
         }
 
         // ---------- Filtros ----------
