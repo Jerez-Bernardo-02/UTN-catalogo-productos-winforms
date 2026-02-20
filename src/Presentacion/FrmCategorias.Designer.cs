@@ -49,6 +49,7 @@
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModificar
             // 
@@ -60,6 +61,7 @@
             this.btnModificar.TabIndex = 12;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnAgregar
             // 
@@ -71,6 +73,7 @@
             this.btnAgregar.TabIndex = 11;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtFiltroRapido
             // 
@@ -79,6 +82,7 @@
             this.txtFiltroRapido.Name = "txtFiltroRapido";
             this.txtFiltroRapido.Size = new System.Drawing.Size(188, 20);
             this.txtFiltroRapido.TabIndex = 10;
+            this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
             // 
             // lblFiltro
             // 
@@ -93,11 +97,16 @@
             // 
             this.dgvCategorias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategorias.Location = new System.Drawing.Point(28, 88);
+            this.dgvCategorias.MultiSelect = false;
             this.dgvCategorias.Name = "dgvCategorias";
+            this.dgvCategorias.ReadOnly = true;
+            this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategorias.Size = new System.Drawing.Size(329, 234);
             this.dgvCategorias.TabIndex = 8;
+            this.dgvCategorias.SelectionChanged += new System.EventHandler(this.dgvCategorias_SelectionChanged);
             // 
             // gbxCategorias
             // 
@@ -123,6 +132,7 @@
             this.Controls.Add(this.gbxCategorias);
             this.Name = "FrmCategorias";
             this.Text = "Categorías";
+            this.Load += new System.EventHandler(this.FrmCategorias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
             this.gbxCategorias.ResumeLayout(false);
             this.gbxCategorias.PerformLayout();
