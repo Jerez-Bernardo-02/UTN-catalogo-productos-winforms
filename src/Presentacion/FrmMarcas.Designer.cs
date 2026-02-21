@@ -51,7 +51,7 @@
             this.gbxCategorias.Location = new System.Drawing.Point(12, 12);
             this.gbxCategorias.Name = "gbxCategorias";
             this.gbxCategorias.Size = new System.Drawing.Size(391, 404);
-            this.gbxCategorias.TabIndex = 15;
+            this.gbxCategorias.TabIndex = 0;
             this.gbxCategorias.TabStop = false;
             this.gbxCategorias.Text = "Listado de Marcas";
             // 
@@ -62,19 +62,29 @@
             this.btnEliminar.Location = new System.Drawing.Point(248, 344);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(110, 35);
-            this.btnEliminar.TabIndex = 13;
+            this.btnEliminar.TabIndex = 1;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dgvMarcas
             // 
+            this.dgvMarcas.AllowUserToAddRows = false;
+            this.dgvMarcas.AllowUserToDeleteRows = false;
             this.dgvMarcas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvMarcas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMarcas.ColumnHeadersVisible = false;
             this.dgvMarcas.Location = new System.Drawing.Point(28, 88);
+            this.dgvMarcas.MultiSelect = false;
             this.dgvMarcas.Name = "dgvMarcas";
+            this.dgvMarcas.ReadOnly = true;
+            this.dgvMarcas.RowHeadersVisible = false;
+            this.dgvMarcas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMarcas.Size = new System.Drawing.Size(329, 234);
-            this.dgvMarcas.TabIndex = 8;
+            this.dgvMarcas.TabIndex = 5;
+            this.dgvMarcas.SelectionChanged += new System.EventHandler(this.dgvMarcas_SelectionChanged);
             // 
             // btnModificar
             // 
@@ -83,9 +93,10 @@
             this.btnModificar.Location = new System.Drawing.Point(29, 344);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(110, 35);
-            this.btnModificar.TabIndex = 12;
+            this.btnModificar.TabIndex = 2;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // lblFiltro
             // 
@@ -93,7 +104,7 @@
             this.lblFiltro.Location = new System.Drawing.Point(25, 33);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(40, 13);
-            this.lblFiltro.TabIndex = 9;
+            this.lblFiltro.TabIndex = 1;
             this.lblFiltro.Text = "Buscar";
             // 
             // btnAgregar
@@ -103,9 +114,10 @@
             this.btnAgregar.Location = new System.Drawing.Point(248, 34);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(110, 35);
-            this.btnAgregar.TabIndex = 11;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtFiltroRapido
             // 
@@ -113,7 +125,8 @@
             this.txtFiltroRapido.Location = new System.Drawing.Point(28, 49);
             this.txtFiltroRapido.Name = "txtFiltroRapido";
             this.txtFiltroRapido.Size = new System.Drawing.Size(188, 20);
-            this.txtFiltroRapido.TabIndex = 10;
+            this.txtFiltroRapido.TabIndex = 3;
+            this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
             // 
             // FrmMarcas
             // 
@@ -126,6 +139,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Marcas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmMarcas_Load);
             this.gbxCategorias.ResumeLayout(false);
             this.gbxCategorias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).EndInit();
