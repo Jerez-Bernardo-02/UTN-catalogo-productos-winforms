@@ -23,6 +23,7 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        // ---------- Inicialización ----------
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
             try
@@ -117,7 +118,7 @@ namespace Presentacion
                 CategoriaNegocio negocio = new CategoriaNegocio();
                 negocio.Eliminar(id);
 
-                MessageBox.Show("La categoría '" + nombre + "' fue eliminada correctamente.", "Eliminar artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La categoría '" + nombre + "' fue eliminada correctamente.", "Eliminar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -146,6 +147,7 @@ namespace Presentacion
 
             dgvCategorias.DataSource = null;
             dgvCategorias.DataSource = lista;
+            dgvCategorias.ClearSelection();
 
             OcultarColumnas();
         }
@@ -157,7 +159,7 @@ namespace Presentacion
 
         private bool HayCategoriaSeleccionada()
         {
-            if(dgvCategorias.CurrentRow == null && dgvCategorias.CurrentRow.DataBoundItem == null)
+            if(dgvCategorias.CurrentRow == null || dgvCategorias.CurrentRow.DataBoundItem == null)
             {
                 MessageBox.Show("No hay una categoría seleccionada. Por favor seleccione una.", "Gestionar categoría", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 

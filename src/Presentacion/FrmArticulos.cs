@@ -286,6 +286,7 @@ namespace Presentacion
 
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = lista;
+            dgvArticulos.ClearSelection();
 
             OcultarColumnas();
         }
@@ -342,6 +343,7 @@ namespace Presentacion
         {
             cbxCategorias.SelectedIndex = 0;
             cbxMarcas.SelectedIndex = 0;
+            txtFiltroRapido.Clear();
             txtPrecioMinimo.Clear();
             txtPrecioMaximo.Clear();
 
@@ -350,7 +352,7 @@ namespace Presentacion
 
         private bool HayArticuloSeleccionado()
         {
-            if (dgvArticulos.CurrentRow == null && dgvArticulos.CurrentRow.DataBoundItem == null)
+            if (dgvArticulos.CurrentRow == null || dgvArticulos.CurrentRow.DataBoundItem == null)
             {
                 MessageBox.Show("No hay un artículo seleccionado. Por favor seleccione uno.", "Modificar artículo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 

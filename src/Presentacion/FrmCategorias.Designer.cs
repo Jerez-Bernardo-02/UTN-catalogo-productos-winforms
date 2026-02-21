@@ -46,7 +46,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(248, 344);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(110, 35);
-            this.btnEliminar.TabIndex = 13;
+            this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -58,7 +58,7 @@
             this.btnModificar.Location = new System.Drawing.Point(29, 344);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(110, 35);
-            this.btnModificar.TabIndex = 12;
+            this.btnModificar.TabIndex = 4;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -70,7 +70,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(248, 34);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(110, 35);
-            this.btnAgregar.TabIndex = 11;
+            this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -81,7 +81,7 @@
             this.txtFiltroRapido.Location = new System.Drawing.Point(28, 49);
             this.txtFiltroRapido.Name = "txtFiltroRapido";
             this.txtFiltroRapido.Size = new System.Drawing.Size(188, 20);
-            this.txtFiltroRapido.TabIndex = 10;
+            this.txtFiltroRapido.TabIndex = 0;
             this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
             // 
             // lblFiltro
@@ -90,22 +90,26 @@
             this.lblFiltro.Location = new System.Drawing.Point(25, 33);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(40, 13);
-            this.lblFiltro.TabIndex = 9;
+            this.lblFiltro.TabIndex = 1;
             this.lblFiltro.Text = "Buscar";
             // 
             // dgvCategorias
             // 
+            this.dgvCategorias.AllowUserToAddRows = false;
+            this.dgvCategorias.AllowUserToDeleteRows = false;
             this.dgvCategorias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategorias.ColumnHeadersVisible = false;
             this.dgvCategorias.Location = new System.Drawing.Point(28, 88);
             this.dgvCategorias.MultiSelect = false;
             this.dgvCategorias.Name = "dgvCategorias";
             this.dgvCategorias.ReadOnly = true;
+            this.dgvCategorias.RowHeadersVisible = false;
             this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategorias.Size = new System.Drawing.Size(329, 234);
-            this.dgvCategorias.TabIndex = 8;
+            this.dgvCategorias.TabIndex = 3;
             this.dgvCategorias.SelectionChanged += new System.EventHandler(this.dgvCategorias_SelectionChanged);
             // 
             // gbxCategorias
@@ -120,7 +124,7 @@
             this.gbxCategorias.Location = new System.Drawing.Point(12, 12);
             this.gbxCategorias.Name = "gbxCategorias";
             this.gbxCategorias.Size = new System.Drawing.Size(391, 404);
-            this.gbxCategorias.TabIndex = 14;
+            this.gbxCategorias.TabIndex = 0;
             this.gbxCategorias.TabStop = false;
             this.gbxCategorias.Text = "Listado de Categorías";
             // 

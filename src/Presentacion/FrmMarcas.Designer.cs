@@ -62,7 +62,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(248, 344);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(110, 35);
-            this.btnEliminar.TabIndex = 1;
+            this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -83,7 +83,7 @@
             this.dgvMarcas.RowHeadersVisible = false;
             this.dgvMarcas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMarcas.Size = new System.Drawing.Size(329, 234);
-            this.dgvMarcas.TabIndex = 5;
+            this.dgvMarcas.TabIndex = 3;
             this.dgvMarcas.SelectionChanged += new System.EventHandler(this.dgvMarcas_SelectionChanged);
             // 
             // btnModificar
@@ -93,7 +93,7 @@
             this.btnModificar.Location = new System.Drawing.Point(29, 344);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(110, 35);
-            this.btnModificar.TabIndex = 2;
+            this.btnModificar.TabIndex = 4;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -114,7 +114,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(248, 34);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(110, 35);
-            this.btnAgregar.TabIndex = 4;
+            this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -125,7 +125,7 @@
             this.txtFiltroRapido.Location = new System.Drawing.Point(28, 49);
             this.txtFiltroRapido.Name = "txtFiltroRapido";
             this.txtFiltroRapido.Size = new System.Drawing.Size(188, 20);
-            this.txtFiltroRapido.TabIndex = 3;
+            this.txtFiltroRapido.TabIndex = 0;
             this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
             // 
             // FrmMarcas
